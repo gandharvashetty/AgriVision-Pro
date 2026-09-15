@@ -1,14 +1,13 @@
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-import tensorflow as tf
 from PIL import Image
-import numpy as np
 import io
+import json
+import tensorflow as tf
+import numpy as np
 
-# 1. Initialize the FastAPI application
 app = FastAPI()
 
-# Enable CORS so our React frontend can talk to this API later
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -17,42 +16,30 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# 2. Load the trained model you downloaded
+# This loads your new model file automatically
 MODEL = tf.keras.models.load_model("plant_disease_model.keras")
 
-# 3. List the 15 class labels (or categories) recognized by your model
-# (Adjust/update these strings if your specific dataset had custom folder names)
-CLASS_NAMES = [
-    'Pepper__bell___Bacterial_spot', 'Pepper__bell___healthy', 'Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy', 'Tomato_Bacterial_spot', 'Tomato_Early_blight', 'Tomato_Late_blight', 'Tomato_Leaf_Mold', 'Tomato_Septoria_leaf_spot', 'Tomato_Spider_mites_Two_spotted_spider_mite', 'Tomato__Target_Spot', 'Tomato__Tomato_YellowLeaf__Curl_Virus', 'Tomato__Tomato_mosaic_virus', 'Tomato_healthy'
-]
-
-def preprocess_image(data) -> np.ndarray:
-    """Resize and prepare uploaded image for prediction."""
-    image = Image.open(io.BytesIO(data)).convert("RGB")
-    image = image.resize((224, 224))
-    image_array = np.array(image) 
-    return np.expand_dims(image_array, axis=0)
-
-@app.get("/")
-def home():
-    return {"message": "Plant Disease Diagnostic API is up and running!"}
+# This loads your new 38 classes automatically
+with open("class_names.json", "r") as f:
+    CLASS_NAMES = json.load(f)
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
     image_bytes = await file.read()
-    processed_img = preprocess_image(image_bytes)
     
-    # Run prediction
-    predictions = MODEL.predict(processed_img)
+    try:
+        image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+    except Exception:
+        return {"class": "Invalid_Image", "confidence": 0.0}
+
+    # Resize image for your new model
+    image = image.resize((224, 224))
+    img_array = tf.keras.utils.img_to_array(image)
+    img_array = np.expand_dims(img_array, 0)
+    
+    predictions = MODEL.predict(img_array)
     predicted_class = CLASS_NAMES[np.argmax(predictions[0])]
     confidence = float(np.max(predictions[0]))
-    
-    # SAFETY GATE: If confidence is below 65%, it's likely not a valid plant leaf
-    if confidence < 0.65:
-        return {
-            "class": "Invalid_Image",
-            "confidence": round(confidence * 100, 2)
-        }
     
     return {
         "class": predicted_class,

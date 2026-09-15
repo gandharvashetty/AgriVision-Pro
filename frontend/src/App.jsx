@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 const DISEASE_DATABASE = {
-  // NEW: Handler for non-leaf or text uploads
   Invalid_Image: {
     name: {
       en: "Incompatible Image / Not a Leaf",
@@ -17,7 +16,7 @@ const DISEASE_DATABASE = {
     impact: {
       en: "Model inference rejected. System cannot process text, documents, or non-botanical images.",
       kn: "ಸಿಸ್ಟಮ್ ಪಠ್ಯ ಅಥವಾ ದಾಖಲೆಗಳನ್ನು ಸ್ವೀಕರಿಸುವುದಿಲ್ಲ. ದಯವಿಟ್ಟು ಎಲೆಯ ಫೋಟೋ ಹಾಕಿ.",
-      hi: "सिस्टम टेक्स्ट या अन्य फोटो स्वीकार नहीं करता। कृपया पत्ती की साफ फोटो डालें।",
+      hi: "सिस्टम टेक्स्ट या अन्य फोटो स्वीकार नहीं करता। कृपया पत्ती की साफ फोटो डालें。",
     },
     treatment: {
       en: [
@@ -37,108 +36,329 @@ const DISEASE_DATABASE = {
       ],
     },
   },
-  Potato___Early_blight: {
+  Apple___Apple_scab: {
     name: {
-      en: "Potato Early Blight",
-      kn: "ಆಲೂಗಡ್ಡೆ ಮುಂಗಾರು ರೋಗ (Early Blight)",
-      hi: "आलू की अतुमारी झुलसा रोग",
+      en: "Apple Scab",
+      kn: "ಸೇಬು ಮಚ್ಚೆ ರೋಗ (Apple Scab)",
+      hi: "सेब का पपड़ी रोग",
     },
     urgency: "Medium",
     cause: {
-      en: "Fungal pathogen Alternaria solani. Survives in soil debris and thrives in high humidity.",
-      kn: "ಆಲ್ಟರ್ನೇರಿಯ ಸೋಲಾನಿ ಶಿಲೀಂಧ್ರದಿಂದ ಬರುತ್ತದೆ. ಮಣ್ಣಿನಲ್ಲಿ ಉಳಿದು ಹೆಚ್ಚಿನ ತೇವಾಂಶದಲ್ಲಿ ಹರಡುತ್ತದೆ.",
-      hi: "अल्टरनेरिया सोलाणी फंगस के कारण होता है। यह मिट्टी में जीवित रहता है और नमी में बढ़ता है।",
+      en: "Fungal pathogen Venturia inaequalis. Thrives in cool, wet spring weather.",
+      kn: "ವೆಂಚುರಿಯಾ ಇಕ್ವಲಿಸ್ ಶಿಲೀಂಧ್ರದಿಂದ ಬರುತ್ತದೆ. ತಂಪಾದ ಮತ್ತು ಆರ್ದ್ರ ವಾತಾವರಣದಲ್ಲಿ ಬೆಳೆಯುತ್ತದೆ.",
+      hi: "वेंटुरिया इनएक्वेलिस फंगस के कारण। ठंडे और गीले मौसम में पनपता है।",
     },
     impact: {
-      en: "Concentric dark lesions on lower foliage, leading to chlorosis, defoliation, and reduced tuber yield.",
-      kn: "ಕೆಳಗಿನ ಎಲೆಗಳ ಮೇಲೆ ಕಪ್ಪು ಕಲೆಗಳು ಮೂಡಿ, ಎಲೆಗಳು ಹಳಿದುಬಿದ್ದು ಗೆಡ್ಡೆಯ ಇಳುವರಿ ಕಡಿಮೆಯಾಗುತ್ತದೆ.",
-      hi: "निचली पत्तियों पर काले धब्बे बनते हैं, जिससे पत्तियां पीली होकर गिर जाती हैं और पैदावार घट जाती है।",
+      en: "Olive-green to dark velvety lesions on leaves and fruit, leading to premature defoliation and fruit malformation.",
+      kn: "ಎಲೆಗಳು ಮತ್ತು ಹಣ್ಣುಗಳ ಮೇಲೆ ಕಪ್ಪು ಕಲೆಗಳು ಮೂಡಿ, ಎಲೆಗಳು ಬೇಗನೆ ಉದುರುತ್ತವೆ.",
+      hi: "पत्तियों और फलों पर काले धब्बे बनते हैं, जिससे पत्तियां समय से पहले गिर जाती हैं।",
     },
     treatment: {
       en: [
-        "Apply preventative copper-based fungicides.",
-        "Implement basal watering to maintain dry foliage.",
-        "Enforce a 2-year crop rotation away from solanaceous plants.",
+        "Remove and destroy fallen infected leaves in autumn.",
+        "Apply protective fungicides during the green tip stage.",
+        "Ensure proper tree pruning to maximize canopy airflow.",
       ],
       kn: [
-        "ತಾಮ್ರ ಆಧಾರಿತ ಶಿಲೀಂಧ್ರನಾಶಕಗಳನ್ನು ಸಿಂಪಡಿಸಿ.",
-        "ಎಲೆಗಳು ಒಣಗಿರುವಂತೆ ಬುಡಕ್ಕೆ ಮಾತ್ರ ನೀರುಣಿಸಿ.",
-        "ಎರಡು ವರ್ಷಗಳವರೆಗೆ ಅದೇ ಜಾಗದಲ್ಲಿ ಆಲೂಗಡ್ಡೆ ಬೆಳೆಯಬೇಡಿ.",
+        "ಶರತ್ಕಾಲದಲ್ಲಿ ಬಿದ್ದುಹೋದ ಸೋಂಕಿತ ಎಲೆಗಳನ್ನು ನಾಶಪಡಿಸಿ.",
+        "ಶಿಲೀಂಧ್ರನಾಶಕಗಳನ್ನು ಸಮಯಕ್ಕೆ ಸರಿಯಾಗಿ ಸಿಂಪಡಿಸಿ.",
+        "ಮರದ ಕೊಂಬೆಗಳನ್ನು ಸರಿಯಾಗಿ ಕತ್ತರಿಸಿ ಗಾಳಿಯಾಡುವಂತೆ ಮಾಡಿ.",
       ],
       hi: [
-        "कॉपर-युक्त फंगसाइड का छिड़काव करें।",
-        "पौधों को जड़ों में पानी दें, पत्तियों को सूखा रखें।",
-        "दो साल तक इस खेत में फसल चक्र (Crop Rotation) बदलें।",
+        "गिरे हुए संक्रमित पत्तों को नष्ट करें।",
+        "उचित समय पर फफूंदनाशक का छिड़काव करें।",
+        "हवा के संचार के लिए पेड़ों की छटाई करें।",
+      ],
+    },
+  },
+  Apple___Black_rot: {
+    name: {
+      en: "Apple Black Rot",
+      kn: "ಸೇಬು ಕಪ್ಪು ಕೊಳೆ ರೋಗ",
+      hi: "सेब का काला सड़न रोग",
+    },
+    urgency: "High",
+    cause: {
+      en: "Fungal agent Botryosphaeria obtusa. Affects stressed trees and unmanaged orchards.",
+      kn: "ಬೊಟ್ರೋಸ್ಪೆರಿಯಾ ಆಬ್ಚುಸಾ ಶಿಲೀಂಧ್ರದಿಂದ ಉಂಟಾಗುತ್ತದೆ.",
+      hi: "बोट्रिओस्फारिया ओब्टूस फंगस के कारण होता है।",
+    },
+    impact: {
+      en: "Causes leaf spot (frogeye leaf spot), fruit rot, and cankers on branches.",
+      kn: "ಎಲೆಗಳ ಮೇಲೆ ಕಲೆಗಳು, ಹಣ್ಣು ಕೊಳೆತ ಮತ್ತು ಕೊಂಬೆಗಳಲ್ಲಿ ಗಾಯಗಳು ಉಂಟಾಗುತ್ತವೆ.",
+      hi: "पत्तियों पर धब्बे, फल सड़ना और शाखाओं पर छाले पड़ जाते हैं।",
+    },
+    treatment: {
+      en: [
+        "Prune out dead or diseased branches and cankers.",
+        "Remove mummified fruits from the orchard.",
+        "Apply appropriate copper or sulfur-based fungicidal sprays.",
+      ],
+      kn: [
+        "ಸೋಂಕಿತ ಕೊಂಬೆಗಳನ್ನು ಕತ್ತರಿಸಿ ತೆಗೆದುಹಾಕಿ.",
+        "ಗಿಡದಲ್ಲಿ ಉಳಿದುಕೊಂಡ ಒಣಗಿದ ಹಣ್ಣುಗಳನ್ನು ತೆಗೆಯಿರಿ.",
+        "ಸೂಕ್ತ ಶಿಲೀಂಧ್ರನಾಶಕಗಳನ್ನು ಸಿಂಪಡಿಸಿ.",
+      ],
+      hi: [
+        "सूखी या रोगग्रस्त शाखाओं की छटाई करें।",
+        "पेड़ पर बचे सड़े फलों को हटाएं।",
+        "फफूंदनाशक का छिड़काव करें।",
+      ],
+    },
+  },
+  Apple___Cedar_apple_rust: {
+    name: {
+      en: "Cedar Apple Rust",
+      kn: "ಸಿದಾರ್ ಆಪಲ್ ರಸ್ಟ್ ರೋಗ",
+      hi: "सेडर एप्पल रस्ट रोग",
+    },
+    urgency: "Medium",
+    cause: {
+      en: "Fungus Gymnospergmi-idium juniperi-virginianae. Requires juniper trees as an alternate host.",
+      kn: "ಜಿಮ್ನೋಸ್ಪೊರಾಂಗಿಯಮ್ ಶಿಲೀಂಧ್ರದಿಂದ ಬರುತ್ತದೆ.",
+      hi: "जिम्नोस्पोरंगियम फंगस के कारण होता है।",
+    },
+    impact: {
+      en: "Bright orange-yellow spots on upper leaf surfaces, reducing photosynthetic capacity.",
+      kn: "ಎಲೆಗಳ ಮೇಲೆ ಪ್ರಕಾಶಮಾನವಾದ ಕಿತ್ತಳೆ-ಹಳದಿ ಕಲೆಗಳು ಮೂಡುತ್ತವೆ.",
+      hi: "पत्तियों पर चमकीले नारंगी-पीले धब्बे बनते हैं।",
+    },
+    treatment: {
+      en: [
+        "Remove nearby alternate host juniper trees if possible.",
+        "Apply fungicides from bud break through petal fall.",
+        "Plant resistant apple cultivars.",
+      ],
+      kn: [
+        "ಸಮೀಪದಲ್ಲಿರುವ ಜುನಿಪರ್ ಮರಗಳನ್ನು ದೂರವಿಡಿ.",
+        "ಮೊಗ್ಗು ಬಿಡುವ ಹಂತದಲ್ಲಿ ಶಿಲೀಂಧ್ರನಾಶಕ ಬಳಸಿ.",
+        "ರೋಗ ನಿರೋಧಕ ತಳಿಗಳನ್ನು ಬೆಳೆಸಿ.",
+      ],
+      hi: [
+        "आसपास के वैकल्पिक मेजबान पेड़ों को हटाएं।",
+        "फंगसाइड का उपयोग करें।",
+        "प्रतिरोधी किस्मों का चयन करें।",
+      ],
+    },
+  },
+  Potato___Late_blight: {
+    name: {
+      en: "Potato Late Blight",
+      kn: "ಆಲೂಗಡ್ಡೆ ತಡವಾದ ರೋಗ",
+      hi: "आलू का पछेती झुलसा",
+    },
+    urgency: "Critical",
+    cause: {
+      en: "Phytophthora infestans oomycete. Thrives in cool, wet conditions.",
+      kn: "ಫೈಟೊಫ್ಟೋರಾ ಇನ್ಫೆಸ್ಟಾನ್ಸ್ ನಿಂದ ಉಂಟಾಗುತ್ತದೆ.",
+      hi: "फाइटोफ्थोरा इन्फेस्टान्स रोगाणु द्वारा।",
+    },
+    impact: {
+      en: "Rapid tissue necrosis on leaves and stems, destroying entire tubers quickly.",
+      kn: "ಎಲೆಗಳು ಮತ್ತು ಕಾಂಡಗಳು ಬೇಗನೆ ಕಪ್ಪಾಗಿ ಕೊಳೆತುಹೋಗುತ್ತವೆ.",
+      hi: "पत्तियां और तने तेजी से सड़ जाते हैं।",
+    },
+    treatment: {
+      en: [
+        "Destroy infected plants immediately.",
+        "Use certified disease-free seed tubers.",
+        "Apply registered protective fungicides.",
+      ],
+      kn: [
+        "ಸೋಂಕಿತ ಗಿಡಗಳನ್ನು ತಕ್ಷಣ ನಾಶಪಡಿಸಿ.",
+        "ರೋಗಮುಕ್ತ ಬೀಜಗಳನ್ನು ಬಳಸಿ.",
+        "ಶಿಲೀಂಧ್ರನಾಶಕಗಳನ್ನು ಸಿಂಪಡಿಸಿ.",
+      ],
+      hi: [
+        "संक्रमित पौधों को तुरंत नष्ट करें।",
+        "रोगमुक्त बीजों का उपयोग करें।",
+        "फफूंदनाशक का छिड़काव करें।",
+      ],
+    },
+  },
+  Tomato___Early_blight: {
+    name: {
+      en: "Tomato Early Blight",
+      kn: "ಟೊಮೆಟೊ ಮುಂಗಾರು ರೋಗ",
+      hi: "टमाटर का अतुमारी झुलसा",
+    },
+    urgency: "Medium",
+    cause: {
+      en: "Alternaria solani fungus. Favored by warm, humid weather and wet foliage.",
+      kn: "ಆಲ್ಟರ್ನೇರಿಯಾ ಸೋಲಾನಿ ಶಿಲೀಂಧ್ರದಿಂದ ಬರುತ್ತದೆ.",
+      hi: "अल्टरनेरिया सोलाणी फंगस के कारण।",
+    },
+    impact: {
+      en: "Dark spots with concentric rings on older leaves, causing defoliation.",
+      kn: "ಹಳೆಯ ಎಲೆಗಳ ಮೇಲೆ ಗುಂಡಗಿನ ಕಲೆಗಳು ಮೂಡಿ ಎಲೆಗಳು ಉದುರುತ್ತವೆ.",
+      hi: "पुरानी पत्तियों पर गोल धब्बे बनते हैं और पत्तियां झड़ जाती हैं।",
+    },
+    treatment: {
+      en: [
+        "Practice crop rotation with non-host crops.",
+        "Prune lower leaves to improve air circulation.",
+        "Apply copper-based fungicides preventatively.",
+      ],
+      kn: [
+        "ಬೆಳೆ ಬದಲಾವಣೆ (Crop rotation) ಪದ್ಧತಿ ಅನುಸರಿಸಿ.",
+        "ಕೆಳಗಿನ ಎಲೆಗಳನ್ನು ಕತ್ತರಿಸಿ.",
+        "ತಾಮ್ರ ಆಧಾರಿತ ಶಿಲೀಂಧ್ರನಾಶಕ ಬಳಸಿ.",
+      ],
+      hi: [
+        "फसल चक्र अपनाएं।",
+        "निचली पत्तियों की छटाई करें।",
+        "कॉपर-युक्त फंगसाइड लगाएं।",
       ],
     },
   },
   Tomato___Late_blight: {
     name: {
       en: "Tomato Late Blight",
-      kn: "ಟೊಮೆಟೊ ತಡವಾದ ರೋಗ (Late Blight)",
-      hi: "टमाटर का पछेती झुलसा रोग",
+      kn: "ಟೊಮೆಟೊ ತಡವಾದ ರೋಗ",
+      hi: "टमाटर का पछेती झुलसा",
     },
     urgency: "Critical",
     cause: {
-      en: "Oomycete pathogen Phytophthora infestans. Spreads rapidly in cool, wet environmental conditions.",
-      kn: "ಫೈಟೊಫ್ಟೋರಾ ಇನ್ಫೆಸ್ಟಾನ್ಸ್ ನೀರಿನ ಅಚ್ಚಿನಿಂದ ಬರುತ್ತದೆ. ತಂಪಾದ ಮತ್ತು ಮಳೆಯ ವಾತಾವರಣದಲ್ಲಿ ವೇಗವಾಗಿ ಹರಡುತ್ತದೆ.",
-      hi: "फाइटोफ्थोरा इन्फेस्टान्स नामक रोगाणु द्वारा। ठंडे और बरसात के मौसम में तेजी से फैलता है।",
+      en: "Phytophthora infestans pathogen. Spreads rapidly in wet weather.",
+      kn: "ಫೈಟೊಫ್ಟೋರಾ ಇನ್ಫೆಸ್ಟಾನ್ಸ್ ನಿಂದ ಬರುತ್ತದೆ.",
+      hi: "फाइटोफ्थोरा इन्फेस्टान्स द्वारा।",
     },
     impact: {
-      en: "Irregular water-soaked spots turning necrotic. Can cause total crop collapse within 48-72 hours.",
-      kn: "ನೀರಿನ ತೇವಾಂಶದ ಕಲೆಗಳು ಬಂದು 48-72 ಗಂಟೆಗಳಲ್ಲಿ ಇಡೀ ಬೆಳೆ ನಾಶವಾಗಬಹುದು.",
-      hi: "पत्तियों पर पानी जैसे धब्बे काले पड़ जाते हैं। 48-72 घंटों में पूरी फसल नष्ट हो सकती है।",
+      en: "Large, dark water-soaked patches on leaves and stems leading to collapse.",
+      kn: "ಎಲೆಗಳ ಮೇಲೆ ದೊಡ್ಡ ನೀರುಕಾಡಿನ ಕಲೆಗಳು ಮೂಡಿ ಗಿಡ ಒಣಗುತ್ತದೆ.",
+      hi: "पत्तियों और तनों पर बड़े काले धब्बे बनते हैं।",
     },
     treatment: {
       en: [
-        "Deploy systemic fungicides immediately upon detection.",
-        "Eradicate and incinerate severely infected biomass.",
-        "Improve canopy ventilation and spacing.",
+        "Apply systemic fungicides at first sign of disease.",
+        "Remove infected crop debris completely.",
+        "Avoid overhead irrigation.",
       ],
       kn: [
-        "ರೋಗ ಕಂಡ ತಕ್ಷಣವೇ ವ್ಯವಸ್ಥಿತ ಶಿಲೀಂಧ್ರನಾಶಕಗಳನ್ನು ಬಳಸಿ.",
-        "ಸೋಂಕು ತಗುలిన ಗಿಡಗಳನ್ನು ಕಿತ್ತು ಸುಟ್ಟುಹಾಕಿ.",
-        "ಗಿಡಗಳ ನಡುವೆ ಸರಿಯಾದ ಗಾಳಿ ಆಡುವಂತೆ ಅಂತರವಿರಿಸಿ.",
+        "ರೋಗ ಕಂಡುಬಂದ ಕೂಡಲೇ ಶಿಲೀಂಧ್ರನಾಶಕ ಬಳಸಿ.",
+        "ಸೋಂಕಿತ ಕಸಕಡ್ಡಿಗಳನ್ನು ತೆಗೆದುಹಾಕಿ.",
+        "ಮೇಲಿನಿಂದ ನೀರು ಹಾಯಿಸುವುದನ್ನು ತಪ್ಪಿಸಿ.",
       ],
       hi: [
-        "तुरंत फंगसाइड दवा का छिड़काव करें।",
-        "संक्रमित पौधों को उखाड़कर नष्ट कर दें।",
-        "पौधों के बीच उचित दूरी और हवा का प्रबंध करें।",
+        "रोग के शुरुआती लक्षण पर फंगसाइड दें।",
+        "संक्रमित अवशेषों को हटाएं।",
+        "ऊपर से पानी देने से बचें।",
       ],
+    },
+  },
+  Tomato___healthy: {
+    name: {
+      en: "Tomato Healthy",
+      kn: "ಆರೋಗ್ಯಕರ ಟೊಮೆಟೊ ಗಿಡ",
+      hi: "स्वस्थ टमाटर का पौधा",
+    },
+    urgency: "Low",
+    cause: {
+      en: "Optimal growing conditions with proper nutrition and care.",
+      kn: "ಉತ್ತಮ ಪೋಷಣೆ ಮತ್ತು ಸರಿಯಾದ ಆರೈಕೆ.",
+      hi: "उचित पोषण और देखभाल।",
+    },
+    impact: {
+      en: "Plant is thriving with high photosynthetic efficiency and yield potential.",
+      kn: "ಗಿಡವು ಅತ್ಯುತ್ತಮವಾಗಿದ್ದು ಹೆಚ್ಚಿನ ಇಳುವರಿ ನೀಡುವ ಸಾಮರ್ಥ್ಯ ಹೊಂದಿದೆ.",
+      hi: "पौधा पूरी तरह स्वस्थ है और अच्छी पैदावार देगा।",
+    },
+    treatment: {
+      en: [
+        "Maintain regular watering and fertilization schedule.",
+        "Monitor fields routinely for any early pest activity.",
+      ],
+      kn: [
+        "ನಿಯಮಿತ ನೀರು ಮತ್ತು ಗೊಬ್ಬರ ನೀಡುವುದನ್ನು ಮುಂದುವರಿಸಿ.",
+        "ಕೀಟಗಳ ಬಾಧೆಗಾಗಿ ಜಮೀನನ್ನು ಗಮನಿಸುತ್ತಿರ.",
+      ],
+      hi: ["नियमित सिंचाई और खाद जारी रखें।", "कीटों की निगरानी करते रहें।"],
+    },
+  },
+  Apple___healthy: {
+    name: {
+      en: "Apple Healthy",
+      kn: "ಆರೋಗ್ಯಕರ ಸೇಬಿನ ಮರ",
+      hi: "स्वस्थ सेब का पौधा",
+    },
+    urgency: "Low",
+    cause: {
+      en: "Balanced orchard management and disease-free environment.",
+      kn: "ಸಮತೋಲಿತ ತೋಟದ ನಿರ್ವಹಣೆ.",
+      hi: "संतुलित बाग प्रबंधन।",
+    },
+    impact: {
+      en: "Foliage is clean and robust, supporting normal fruit development.",
+      kn: "ಎಲೆಗಳು ಸ್ವಚ್ಛವಾಗಿದ್ದು ಹಣ್ಣಿನ ಬೆಳವಣಿಗೆಗೆ ಸಹಕಾರಿಯಾಗಿದೆ.",
+      hi: "पत्तियां स्वस्थ हैं और फल विकास में सहायक हैं।",
+    },
+    treatment: {
+      en: [
+        "Continue routine orchard maintenance.",
+        "Ensure proper soil nutrient tracking.",
+      ],
+      kn: ["ತೋಟದ ಸಾಮಾನ್ಯ ನಿರ್ವಹಣೆಯನ್ನು ಮುಂದುವರಿಸಿ."],
+      hi: ["बाग की सामान्य देखभाल जारी रखें।"],
+    },
+  },
+  Potato___healthy: {
+    name: {
+      en: "Potato Healthy",
+      kn: "ಆರೋಗ್ಯಕರ ಆಲೂಗಡ್ಡೆ ಬೆಳೆ",
+      hi: "स्वस्थ आलू की फसल",
+    },
+    urgency: "Low",
+    cause: {
+      en: "Proper soil management and absence of pathogens.",
+      kn: "ಸೂಕ್ತ ಮಣ್ಣಿನ ನಿರ್ವಹಣೆ.",
+      hi: "उचित मिट्टी प्रबंधन।",
+    },
+    impact: {
+      en: "Vigorous crop growth with strong tuber development capacity.",
+      kn: "ಬೆಳೆಯು ಬಲವಾಗಿದ್ದು ಗೆಡ್ಡೆಗಳ ಅಭಿವೃದ್ಧಿ ಉತ್ತಮವಾಗಿದೆ.",
+      hi: "फसल जोरदार है और कंद विकास अच्छा है।",
+    },
+    treatment: {
+      en: [
+        "Maintain standard crop care guidelines.",
+        "Perform routine scouting.",
+      ],
+      kn: ["ಸಾಮಾನ್ಯ ಬೆಳೆ ನಿರ್ವಹಣಾ ಮಾರ್ಗಗಳನ್ನು ಅನುಸರಿಸಿ."],
+      hi: ["मानक फसल देखभाल नियम अपनाएं।"],
     },
   },
   default: {
     name: {
-      en: "Unknown Condition / Healthy",
-      kn: "ಗುರುತಿಸಲಾಗದ ಸ್ಥಿತಿ / ಆರೋಗ್ಯಕರ",
-      hi: "अज्ञात स्थिति / स्वस्थ फसल",
+      en: "Crop Pathology Condition",
+      kn: "ಬೆಳೆಯ ರೋಗ ಸ್ಥಿತಿ",
+      hi: "फसल रोग स्थिति",
     },
-    urgency: "Low",
+    urgency: "Medium",
     cause: {
-      en: "Awaiting distinct pathogenic markers. Could indicate abiotic stress or healthy baseline.",
-      kn: "ಸ್ಪಷ್ಟ ರೋಗಲಕ್ಷಣಗಳು ಸಿಕ್ಕಿಲ್ಲ. ಪೌಷ್ಟಿಕಾಂಶದ ಕೊರತೆಯಿರಬಹುದು.",
-      hi: "स्पष्ट लक्षण नहीं मिले हैं। यह पोषण की कमी या स्वस्थ पौधा हो सकता है।",
+      en: "Pathogenic or environmental stress factor identified in foliar matrix.",
+      kn: "ಎಲೆಗಳಲ್ಲಿ ಗುರುತಿಸಲಾದ ರೋಗ ಅಥವಾ ಪರಿಸರ ಒತ್ತಡದ ಅಂಶ.",
+      hi: "पत्तियों में पहचाना गया रोग या पर्यावरणीय तनाव कारक।",
     },
     impact: {
-      en: "Monitor for changes in yield or growth velocity.",
-      kn: "ಬೆಳವಣಿಗೆ ಮತ್ತು ಇಳುವರಿಯಲ್ಲಿ ಬದಲಾವಣೆಗಳನ್ನು ಗಮನಿಸಿ.",
-      hi: "विकास और पैदावार में बदलाव पर नजर रखें।",
+      en: "Potential tissue degradation and risk of yield reduction if left unmanaged.",
+      kn: "ನಿರ್ವಹಿಸದಿದ್ದರೆ ಇಳುವರಿ ಕುಂಠಿತಗೊಳ್ಳುವ ಅಪಾಯ.",
+      hi: "प्रबंधन न करने पर पैदावार घटने का जोखिम।",
     },
     treatment: {
       en: [
-        "Conduct soil test and nutrient panel.",
-        "Monitor proper irrigation scheduling.",
-        "Isolate visually abnormal plants for observation.",
+        "Isolate affected sections of the crop.",
+        "Consult local agronomic advisory for precise treatment.",
+        "Apply recommended protective agents.",
       ],
       kn: [
-        "ಮಣ್ಣಿನ ಪರೀಕ್ಷೆ ಮತ್ತು ಪೋಷಕಾಂಶಗಳ ಪರಿಶೀಲನೆ ನಡೆಸಿ.",
-        "ಸರಿಯಾದ ನೀರಾವರಿ ವೇಳಾಪಟ್ಟಿ ಪಾಲಿಸಿ.",
-        "ಅನುಮಾನವಿರುವ ಗಿಡಗಳನ್ನು ಗಮನಿಸಿ.",
+        "ಬಾಧಿತ ಭಾಗಗಳನ್ನು ಪ್ರತ್ಯೇಕಿಸಿ.",
+        "ಸ್ಥಳೀಯ ಕೃಷಿ ತಜ್ಞರನ್ನು ಸಂಪರ್ಕಿಸಿ.",
+        "ಶಿಫಾರಸು ಮಾಡಿದ ರಕ್ಷಕಗಳನ್ನು ಬಳಸಿ.",
       ],
       hi: [
-        "मिट्टी की जांच करवाएं।",
-        "उचित सिंचाई का ध्यान रखें।",
-        "असामान्य पौधों को अलग से ऑब्जर्व करें।",
+        "प्रभावित हिस्सों को अलग करें।",
+        "कृषि विशेषज्ञों की सलाह लें।",
+        "अनुशंसित उपचार अपनाएं।",
       ],
     },
   },
@@ -208,7 +428,8 @@ export default function App() {
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
 
   const getDiseaseInfo = (className) => {
-    // If the exact class exists in our database, use it
+    const isHealthy = className.toLowerCase().includes("healthy");
+
     if (DISEASE_DATABASE[className]) {
       const record = DISEASE_DATABASE[className];
       return {
@@ -220,35 +441,46 @@ export default function App() {
       };
     }
 
-    // AUTOMATIC FALLBACK: If the model predicts any other class, format its name nicely!
     const cleanName = className.replace(/___/g, " - ").replace(/_/g, " ");
+
+    if (isHealthy) {
+      return {
+        name: cleanName,
+        urgency: "Low",
+        cause:
+          {
+            en: `Optimal foliar telemetry detected. No pathogenic markers or necrotic lesions found.`,
+            kn: `ಉತ್ತಮ ಎಲೆಯ ಆರೋಗ್ಯ ಪತ್ತೆಯಾಗಿದೆ. ಯಾವುದೇ ರೋಗಗಳು ಇಲ್ಲ.`,
+            hi: `स्वस्थ पत्ती के लक्षण पाए गए हैं। कोई रोग नहीं है।`,
+          }[lang] || `Optimal foliar telemetry detected.`,
+        impact:
+          {
+            en: "Crop is thriving with normal photosynthetic activity and robust cellular structure.",
+            kn: `ಬೆಳೆಯು ಆರೋಗ್ಯಕರವಾಗಿದ್ದು ಉತ್ತಮ ಬೆಳವಣಿಗೆಯಲ್ಲಿದೆ.`,
+            hi: `फसल पूरी तरह स्वस्थ है और विकास सामान्य है।`,
+          }[lang] || "Crop is thriving with normal activity.",
+        treatment: [
+          {
+            en: "Continue current irrigation and balanced fertilizer schedule.",
+            kn: "ಪ್ರಸ್ತುತ ನೀರಾವರಿ ಮತ್ತು ರೊಬ್ಬಿನ ನಿರ್ವಹಣೆಯನ್ನು ಮುಂದುವರಿಸಿ.",
+            hi: "वर्तमान सिंचाई और खाद प्रबंधन जारी रखें。",
+          },
+          {
+            en: "Perform routine field monitoring to maintain baseline crop health.",
+            kn: "ಬೆಳೆಯ ಆರೋಗ್ಯವನ್ನು ಕಾಪಾಡಲು ನಿಯಮಿತವಾಗಿ ಗಮನಿಸಿ.",
+            hi: "फसल की सेहत बनाए रखने के लिए नियमित निगरानी रखें。",
+          },
+        ].map((item) => item[lang] || item["en"]),
+      };
+    }
+
+    const defaultRecord = DISEASE_DATABASE["default"];
     return {
       name: cleanName,
-      urgency: "Medium",
-      cause:
-        {
-          en: `Identified telemetry profile for ${cleanName}. Pathogenic markers are active on foliar structure.`,
-          kn: `${cleanName} ಗೆ ಸಂಬಂಧಿಸಿದ ರೋಗ ಲಕ್ಷಣ ಪತ್ತೆಯಾಗಿದೆ.`,
-          hi: `${cleanName} से संबंधित लक्षण पहचाना गया है।`,
-        }[lang] || `Identified telemetry profile for ${cleanName}.`,
-      impact:
-        {
-          en: "Foliar tissue degradation, chlorosis, and potential yield suppression if left unmanaged.",
-          kn: "ಎಲೆಗಳ ಹಾನಿ ಮತ್ತು ಇಳುವರಿ ಕುಂಠಿತಗೊಳ್ಳುವ ಸಾಧ್ಯತೆಯಿದೆ.",
-          hi: "पत्तियों का नुकसान और पैदावार में कमी आ सकती है।",
-        }[lang] || "Foliar tissue degradation and potential yield suppression.",
-      treatment: [
-        {
-          en: "Isolate affected plants immediately to prevent pathogen vector spread.",
-          kn: "ಸೋಂಕಿತ ಗಿಡಗಳನ್ನು ತಕ್ಷಣವೇ ಪ್ರತ್ಯೇಕಿಸಿ.",
-          hi: "संक्रमित पौधों को तुरंत अलग करें।",
-        },
-        {
-          en: "Apply targeted copper or systemic fungicide based on local agronomic guidelines.",
-          kn: "ಸ್ಥಳೀಯ ಕೃಷಿ ಮಾರ್ಗದರ್ಶನದಂತೆ ಸೂಕ್ತ ಶಿಲೀಂಧ್ರನಾಶಕ ಬಳಸಿ.",
-          hi: "कृषि दिशानिर्देशों के अनुसार फंगसाइड का उपयोग करें।",
-        },
-      ].map((item) => item[lang] || item["en"]),
+      urgency: defaultRecord.urgency,
+      cause: defaultRecord.cause[lang] || defaultRecord.cause["en"],
+      impact: defaultRecord.impact[lang] || defaultRecord.impact["en"],
+      treatment: defaultRecord.treatment[lang] || defaultRecord.treatment["en"],
     };
   };
 
@@ -326,7 +558,6 @@ export default function App() {
   };
 
   const t = (key) => translations[key][lang] || translations[key]["en"];
-
   const isInvalid = result && result.class === "Invalid_Image";
 
   return (
@@ -484,7 +715,6 @@ export default function App() {
                 {t("reportTitle")}
               </h2>
 
-              {/* Banner with Error Warning state if invalid image */}
               <div
                 className={`rounded-2xl p-4 sm:p-6 border relative overflow-hidden transition-colors ${
                   isInvalid
@@ -563,6 +793,45 @@ export default function App() {
                   </p>
                 </div>
               </div>
+
+              {!isInvalid && (
+                <div className="bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-4 sm:p-5 shadow-sm">
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider flex items-center gap-2">
+                      <span>📊</span>{" "}
+                      {result.class.toLowerCase().includes("healthy")
+                        ? "Crop Health Status"
+                        : "Estimated Severity Index"}
+                    </h4>
+                    <span
+                      className={`text-[10px] sm:text-xs px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider ${
+                        result.class.toLowerCase().includes("healthy")
+                          ? "bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-300"
+                          : result.confidence > 80
+                            ? "bg-red-100 text-red-600 dark:bg-red-500/20 dark:text-red-300"
+                            : result.confidence > 50
+                              ? "bg-amber-100 text-amber-600 dark:bg-amber-400/10 dark:text-amber-400"
+                              : "bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-300"
+                      }`}
+                    >
+                      {result.class.toLowerCase().includes("healthy")
+                        ? "100% Healthy"
+                        : result.confidence > 80
+                          ? "Critical Impact"
+                          : result.confidence > 50
+                            ? "Moderate Spread"
+                            : "Early Stage"}
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                    {result.class.toLowerCase().includes("healthy")
+                      ? "This crop sample exhibits optimal cellular integrity and active photosynthetic properties. No chemical intervention is required."
+                      : result.confidence > 80
+                        ? "High probability of advanced foliar degradation and rapid spore propagation. Immediate systemic containment is strongly advised."
+                        : "Moderate anomaly signatures identified across the leaf matrix. Monitor field spread and maintain balanced irrigation scheduling."}
+                  </p>
+                </div>
+              )}
 
               <div
                 className={`rounded-2xl p-4 sm:p-5 relative overflow-hidden border ${isInvalid ? "bg-red-50/50 dark:bg-red-950/20 border-red-200 dark:border-red-500/20" : "bg-emerald-50/50 dark:bg-slate-800/40 border-emerald-200 dark:border-emerald-500/20"}`}
