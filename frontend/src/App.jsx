@@ -555,6 +555,21 @@ export default function App() {
       kn: "ರೈತರಿಗೆ ಸಲಹೆ ಹಾಗೂ ಪರಿಹಾರ ಕ್ರಮಗಳು",
       hi: "सुझाए गए उपचार कदम",
     },
+    advisoryTitle: {
+      en: "Connect with Local Agronomic Expert",
+      kn: "ಸ್ಥಳೀಯ ಕೃಷಿ ತಜ್ಞರೊಂದಿಗೆ ಸಂಪರ್ಕಿಸಿ",
+      hi: "स्थानीय कृषि विशेषज्ञ से संपर्क करें",
+    },
+    kccLabel: {
+      en: "Kisan Call Center Helpline:",
+      kn: "ಕಿಸಾನ್ ಕರೆ ಕೇಂದ್ರ ಸಹಾಯವಾಣಿ:",
+      hi: "किसान कॉल सेंटर हेल्पलाइन:",
+    },
+    rskLabel: {
+      en: "Raitha Samparka Kendra (RSK) / Portal:",
+      kn: "ರೈತ ಸಂಪರ್ಕ ಕೇಂದ್ರ (RSK) ಪೋರ್ಟಲ್:",
+      hi: "किसान संपर्क केंद्र (RSK) पोर्टल:",
+    },
   };
 
   const t = (key) => translations[key][lang] || translations[key]["en"];
@@ -859,6 +874,37 @@ export default function App() {
                   ))}
                 </div>
               </div>
+
+              {/* NEW: Local Agronomic Expert & Helpline Card */}
+              {!isInvalid && (
+                <div className="bg-gradient-to-r from-teal-500/10 to-emerald-500/10 dark:from-teal-500/20 dark:to-emerald-500/20 border border-teal-500/30 rounded-2xl p-4 sm:p-5 shadow-sm">
+                  <h4 className="text-xs sm:text-sm font-bold text-teal-800 dark:text-teal-300 uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <span>📞</span> {t("advisoryTitle")}
+                  </h4>
+                  <div className="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white/80 dark:bg-slate-900/80 p-3 rounded-xl border border-slate-200 dark:border-slate-700 gap-2">
+                      <span className="font-medium">{t("kccLabel")}</span>
+                      <a
+                        href="tel:18001801551"
+                        className="font-bold text-emerald-600 dark:text-emerald-400 hover:underline flex items-center gap-1"
+                      >
+                        📞 1800-180-1551
+                      </a>
+                    </div>
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white/80 dark:bg-slate-900/80 p-3 rounded-xl border border-slate-200 dark:border-slate-700 gap-2">
+                      <span className="font-medium">{t("rskLabel")}</span>
+                      <a
+                        href="https://raitamitra.karnataka.gov.in"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-bold text-teal-600 dark:text-teal-400 hover:underline flex items-center gap-1"
+                      >
+                        🌐 Raitha Mitra Portal ↗
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>
